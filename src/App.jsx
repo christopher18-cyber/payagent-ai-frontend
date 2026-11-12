@@ -42,6 +42,11 @@ export default function App() {
     refreshAll();
   }, [refreshAll]);
 
+  useEffect(() => {
+  const agent = import.meta.env.VITE_AGENT_URL;
+  if (agent) fetch(agent, { mode: 'no-cors' }).catch(() => {});
+}, []);
+
   const queueCount = items.filter((i) => i.status === 'AWAITING_REVIEW').length;
 
   const tabs = [
